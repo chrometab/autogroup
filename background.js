@@ -1,7 +1,6 @@
 let inNewGroup = {};
 
 chrome.tabs.onCreated.addListener(tab => {
-    console.log(this, tab)
     if (tab.pendingUrl != "chrome://newtab/" && tab.openerTabId) {
         chrome.tabs.get(tab.openerTabId, openerTab => {
 
@@ -12,9 +11,10 @@ chrome.tabs.onCreated.addListener(tab => {
                         tab.openerTabId,
                         tab.id
                     ]
-                }, id => console.log(`Group ${id} was created!`));
+                });
 
             } else { 
+
                 const newGroupId = !inNewGroup[tab.openerTabId]
                     ? groupId
                     : inNewGroup[tab.openerTabId]>1
@@ -25,7 +25,6 @@ chrome.tabs.onCreated.addListener(tab => {
                     groupId: newGroupId,
                     tabIds: tab.id
                 }, id => {
-                    console.log(`Tab was added to group ${id}`)
                     if (inNewGroup[tab.openerTabId]===true) {
                         inNewGroup[tab.openerTabId] = id
                     }

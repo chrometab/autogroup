@@ -1,0 +1,22 @@
+{
+    "name": "Auto Tab Groups",
+    "description": "Combine tabs in one group.",
+    "version": "0.10",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "tabGroups"
+    ],
+    "commands": {
+        "toggle-open-in-new-group": {
+          "suggested_key": {
+            "default": "Alt+N"
+          },
+          "description": "Toggle opening links from current tab in new group"
+        }
+    }
+}

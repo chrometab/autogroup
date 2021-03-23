@@ -2,15 +2,15 @@
 
 Super simple **Google Chrome Extension** that uses [chrome.tabs API](https://developer.chrome.com/docs/extensions/reference/tabs) to group tabs automatically
 
-## Usage:
+## Usage
 
 To open links from current tab in new group press `Alt+N`.
-Press again to continue openning in current group.
+Press again to continue opening in current group.
 
 You can change this shortcut in settings:
 >`chrome://extensions/shortcuts`
 
-## Installation:
+## Installation
 
 * Clone this repo
 * Go to `chrome://extensions/`

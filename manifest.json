@@ -17,6 +17,12 @@
             "default": "Alt+N"
           },
           "description": "Toggle opening links from current tab in new group"
+        },
+        "close-current-tab-group": {
+          "suggested_key": {
+            "default": "Alt+W"
+          },
+          "description": "Close current tab group"
         }
     }
 }

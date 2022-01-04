@@ -34,10 +34,27 @@ chrome.tabs.onCreated.addListener(tab => {
     }
 });
 
+function closeAll(tabs, callback=_=>null) {
+    for (const tab of tabs) {
+        console.log({tabs, tab})
+        chrome.tabs.remove(tab.id, callback)
+    }
+}
+
 chrome.commands.onCommand.addListener(cmd => {
     if (cmd == "toggle-open-in-new-group") {
         chrome.tabs.query({currentWindow: true, active: true}, e => {
             inNewGroup[e[0].id] = !inNewGroup[e[0].id];
         });
+        return
+    }
+    if (cmd == "close-current-tab-group") {
+        chrome.tabs.query({currentWindow: true, active: true}, e => {
+            const groupId = e[0].groupId;
+            (groupId > 0) 
+                ? chrome.tabs.query({groupId}, closeAll)
+                : closeAll(e)
+        });
+        return
     }
 });

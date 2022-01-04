@@ -57,4 +57,10 @@ chrome.commands.onCommand.addListener(cmd => {
         });
         return
     }
+    if (cmd == "create-new-group-from-tabs") {
+        chrome.tabs.query({currentWindow: true, highlighted: true}, e => {
+            chrome.tabs.group({tabIds: e.map(tab=>tab.id)});
+        });
+        return
+    }
 });

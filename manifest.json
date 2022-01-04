@@ -23,6 +23,12 @@
             "default": "Alt+W"
           },
           "description": "Close current tab group"
+        },
+        "create-new-group-from-tabs": {
+          "suggested_key": {
+            "default": "Alt+G"
+          },
+          "description": "Create new group from selected tabs"
         }
     }
 }

@@ -42,25 +42,27 @@ function closeAll(tabs, callback=_=>null) {
 }
 
 chrome.commands.onCommand.addListener(cmd => {
-    if (cmd == "toggle-open-in-new-group") {
-        chrome.tabs.query({currentWindow: true, active: true}, e => {
-            inNewGroup[e[0].id] = !inNewGroup[e[0].id];
-        });
-        return
-    }
-    if (cmd == "close-current-tab-group") {
-        chrome.tabs.query({currentWindow: true, active: true}, e => {
-            const groupId = e[0].groupId;
-            (groupId > 0) 
-                ? chrome.tabs.query({groupId}, closeAll)
-                : closeAll(e)
-        });
-        return
-    }
-    if (cmd == "create-new-group-from-tabs") {
-        chrome.tabs.query({currentWindow: true, highlighted: true}, e => {
-            chrome.tabs.group({tabIds: e.map(tab=>tab.id)});
-        });
-        return
+    switch (cmd) {
+        case "toggle-open-in-new-group":
+            chrome.tabs.query({currentWindow: true, active: true}, e => {
+                inNewGroup[e[0].id] = !inNewGroup[e[0].id];
+            });
+            break;
+        case "close-current-tab-group":
+            chrome.tabs.query({currentWindow: true, active: true}, e => {
+                const groupId = e[0].groupId;
+                (groupId > 0) 
+                    ? chrome.tabs.query({groupId}, closeAll)
+                    : closeAll(e)
+            });
+            break;
+        case "create-new-group-from-tabs":
+            chrome.tabs.query({currentWindow: true, highlighted: true}, e => {
+                chrome.tabs.group({tabIds: e.map(tab=>tab.id)});
+            });
+            break;
+        default:
+            console.warn("No cmd handler for:", cmd);
+            break;
     }
 });

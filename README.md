@@ -10,9 +10,13 @@ Press again to continue opening in current group.
 You can change this shortcut in settings:
 >`chrome://extensions/shortcuts`
 
+### Other options
+* To close current group press `Alt+W`
+* To group selected tabs press `Alt+G`
+
 ## Installation
 
-* Clone this repo
+* Clone this repo or simply download ZIP archive
 * Go to `chrome://extensions/`
 * Turn on `Developer mode`
 * Click `Load unpacked`
